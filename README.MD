@@ -10,5 +10,5 @@
 
 # Run
 ```
-docker run --rm -v ${pwd}:/app cievert app:check google.com
+docker run --rm -v ${pwd}:/app cievert app:check google.com -t Google -s 200
 ```
