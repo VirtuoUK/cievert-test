@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Michael",
+    "email": "michael.s@site.com",
+    "tel": "07777123456"
+  },
+  {
+    "name": "Jim",
+    "email": "jim.h@site.com",
+    "tel": "07777111222"
+  },
+  {
+    "name": "Dwight",
+    "email": "dwight.s@site.com",
+    "tel": "07777000555"
+  }
+]

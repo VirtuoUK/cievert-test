@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Console\App\Models\Notifiers\SwiftMailNotifier;
+use Symfony\Component\Console\Application;
+use Console\App\Commands\CheckCommand;
+use Console\App\Models\Notifiers\TwilioNotifier;
+use Console\App\Models\HttpClients\GuzzleClient;
+
+const CONFIG_FILE = __DIR__ . '/../config/supportgroup.json';
+
+$application = new Application();
+
+$checkCommand = new CheckCommand();
+
+$twilioNotifier = new TwilioNotifier();
+$twilioNotifier->setup(
+    [
+        'user' => 'test',
+        'pass' => 'secure',
+        'sid' => 'ABC1234567890',
+        'token' => 'auth_token',
+        'from_no' => '+447777888999'
+    ]
+);
+
+$swiftNotifier = new SwiftMailNotifier();
+$swiftNotifier->setup(
+    [
+        'smtp_host' => 'smtp.office.org',
+        'smtp_port' => 25,
+        'from_addr' => 'andy.b@site.com'
+    ]
+);
+
+$checkCommand->addNotifier($twilioNotifier, $swiftNotifier);
+
+$httpClient = new GuzzleClient();
+$checkCommand->addHttpClient($httpClient);
+
+$application->add($checkCommand);
+
+$application->run();

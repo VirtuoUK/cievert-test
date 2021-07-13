@@ -1,0 +1,14 @@
+{
+    "require": {
+        "symfony/console": "^5.3",
+        "twilio/sdk": "^6.26",
+        "swiftmailer/swiftmailer": "^6.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload":{
+        "psr-4": {
+            "Console\\": "src"
+        },
+        "classmap": ["src"]
+    }
+}
